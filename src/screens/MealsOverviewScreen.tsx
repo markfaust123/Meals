@@ -1,22 +1,33 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, FlatList, View, Text } from "react-native";
 import { MEALS } from "../../data/dummy-data";
+import Meal from "../../models/meal";
+import MealItem from "../components/MealItem";
 
-const MealsOverviewScreen = ({navigation, route}: {navigation: any, route: any}) => {
-
-    const catId = route.params.categoryId;
-
+const renderMealItem = (item: Meal) => {
     return (
-        <View style={styles.container}>
-            <Text>Meal's Overview Screen - {catId}</Text>
-        </View>
+        <MealItem title={item.title}/>
     );
-}
+};
+
+const MealsOverviewScreen = ({ route }: { navigation: any; route: any }) => {
+  const catId = route.params.categoryId;
+  const displayedMeals = MEALS.filter(
+    (mealItem) => mealItem.categoryIds.indexOf(catId) !== -1
+  );
+
+  return (
+    <View style={styles.container}>
+      <FlatList data={displayedMeals} keyExtractor={(item) => item.id} renderItem={(itemData) => renderMealItem(itemData.item)}/>
+      <Text>Meal's Overview Screen - {catId}</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-    }
-})
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+});
 
 export default MealsOverviewScreen;
