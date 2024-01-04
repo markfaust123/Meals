@@ -4,9 +4,15 @@ import Meal from "../../models/meal";
 import MealItem from "../components/MealItem";
 
 const renderMealItem = (item: Meal) => {
-    return (
-        <MealItem title={item.title}/>
-    );
+  const mealItemProps = {
+    title: item.title,
+    imageUrl: item.imageUrl,
+    duration: item.duration,
+    complexity: item.complexity,
+    affordability: item.affordability,
+  };
+
+  return <MealItem {...mealItemProps} />;
 };
 
 const MealsOverviewScreen = ({ route }: { navigation: any; route: any }) => {
@@ -17,8 +23,11 @@ const MealsOverviewScreen = ({ route }: { navigation: any; route: any }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList data={displayedMeals} keyExtractor={(item) => item.id} renderItem={(itemData) => renderMealItem(itemData.item)}/>
-      <Text>Meal's Overview Screen - {catId}</Text>
+      <FlatList
+        data={displayedMeals}
+        keyExtractor={(item) => item.id}
+        renderItem={(itemData) => renderMealItem(itemData.item)}
+      />
     </View>
   );
 };
