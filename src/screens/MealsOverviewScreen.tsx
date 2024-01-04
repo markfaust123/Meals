@@ -9,19 +9,13 @@ import MealItem from "../components/MealItem";
 import { useLayoutEffect } from "react";
 
 const renderMealItem = (item: Meal, navigation: any) => {
-  const handlePress = () => {
-    navigation.navigate("MealDetailScreen", {
-      mealId: item.id,
-    });
-  };
-
   const mealItemProps = {
+    id: item.id,
     title: item.title,
     imageUrl: item.imageUrl,
     duration: item.duration,
     complexity: item.complexity,
     affordability: item.affordability,
-    onPress: handlePress,
   };
 
   return <MealItem {...mealItemProps} />;
