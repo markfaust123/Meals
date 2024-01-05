@@ -28,12 +28,11 @@ const MealDetailScreen = ({
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: mealId,
       headerRight: () => (
         <IconButton icon="star" color="white" onPress={handleHeaderButtonPressed} />
       ),
     });
-  }, [mealId, navigation, handleHeaderButtonPressed]);
+  }, [navigation, handleHeaderButtonPressed]);
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
