@@ -1,5 +1,7 @@
 import { useLayoutEffect } from "react";
-import { Text } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { MEALS } from "../../data/dummy-data";
+import MealDetails from "../components/MealDetails";
 
 const MealDetailScreen = ({
   navigation,
@@ -8,20 +10,38 @@ const MealDetailScreen = ({
   navigation: any;
   route: any;
 }) => {
+  const mealId = route.params.mealId;
 
-    const mealId = route.params.mealId;
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: mealId,
+    });
+  }, [mealId, navigation]);
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            title: mealId
-        });
-    }, [mealId, navigation])
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
   return (
     <>
-      <Text>This is the Meal Detail Screen!{mealId}</Text>
+      <View>
+        <Image source={{ uri: selectedMeal?.imageUrl }} style={styles.image} />
+        <Text>{selectedMeal?.title}</Text>
+        <MealDetails
+          duration={selectedMeal!.duration}
+          complexity={selectedMeal!.complexity}
+          affordability={selectedMeal!.affordability}
+        />
+        <Text>Ingredients</Text>
+        <Text>Steps</Text>
+      </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: "100%",
+    height: 200,
+  },
+});
 
 export default MealDetailScreen;
