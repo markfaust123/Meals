@@ -31,7 +31,13 @@ const MealDetailScreen = ({
           affordability={selectedMeal!.affordability}
         />
         <Text>Ingredients</Text>
+        {selectedMeal!.ingredients.map((ingredient) => (
+          <Text key={ingredient}>{ingredient}</Text>
+        ))}
         <Text>Steps</Text>
+        {selectedMeal!.steps.map((step) => (
+          <Text key={step}>{step}</Text>
+        ))}
       </View>
     </>
   );
