@@ -8,7 +8,7 @@ import Meal from "../../models/meal";
 import MealItem from "../components/MealItem";
 import { useLayoutEffect } from "react";
 
-const renderMealItem = (item: Meal, navigation: any) => {
+const renderMealItem = (item: Meal) => {
   const mealItemProps = {
     id: item.id,
     title: item.title,
@@ -48,7 +48,7 @@ const MealsOverviewScreen = ({
       <FlatList
         data={displayedMeals}
         keyExtractor={(item) => item.id}
-        renderItem={(itemData) => renderMealItem(itemData.item, navigation)}
+        renderItem={(itemData) => renderMealItem(itemData.item)}
       />
     </View>
   );
