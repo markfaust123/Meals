@@ -10,6 +10,7 @@ import FavoritesScreen from "./src/screens/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { Provider } from "react-redux";
 import { store } from "./src/store/redux/store";
+// import FavoritesContextProvider from "./src/store/context/favorites-context";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
